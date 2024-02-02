@@ -44,7 +44,7 @@ export default async function JobFilterSidebar({
 
   return (
     <aside className="sticky top-0 h-fit rounded-lg border bg-background p-4 md:w-[260px]">
-      <form action={filterJobs}>
+      <form action={filterJobs} key={JSON.stringify(defaultValues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="q">Search</Label>
@@ -57,7 +57,11 @@ export default async function JobFilterSidebar({
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="type">Type</Label>
-            <Select name="type" id="type" defaultValue={defaultValues.type || ""}>
+            <Select
+              name="type"
+              id="type"
+              defaultValue={defaultValues.type || ""}
+            >
               <option value="">All Types</option>
               {jobTypes.map((type) => (
                 <option key={type} value={type}>
@@ -68,7 +72,11 @@ export default async function JobFilterSidebar({
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="location">Location</Label>
-            <Select name="location" id="location" defaultValue={defaultValues.location || ""}>
+            <Select
+              name="location"
+              id="location"
+              defaultValue={defaultValues.location || ""}
+            >
               <option value="">All Location</option>
               {distinctLocations.map((location) => (
                 <option key={location} value={location}>
@@ -87,9 +95,7 @@ export default async function JobFilterSidebar({
             />
             <Label htmlFor="remote">Remote Jobs</Label>
           </div>
-          <FormSubmitButton className="w-full">
-            Filter Jobs
-          </FormSubmitButton>
+          <FormSubmitButton className="w-full">Filter Jobs</FormSubmitButton>
         </div>
       </form>
     </aside>
